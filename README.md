@@ -56,7 +56,9 @@ This project relies on  [HID](https://github.com/NicoHood/HID) library by NicoHo
 
 # The hardware
 
- Recommended is [Arduino Pro Micro](https://docs.arduino.cc/hardware/micro/) due to very small form factor. Other devices compatible with HIDlibrary:
+![image](https://github.com/user-attachments/assets/5fdf49f0-f758-4637-9025-b42b07098e8b)
+
+ Recommended is [Arduino Pro Micro](https://docs.arduino.cc/hardware/micro/) due to very small form factor. Other devices compatible with HIDlibrary.
 
 ## As-Is
 - Leonardo
