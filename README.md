@@ -48,6 +48,8 @@ void loop() {
 
 That's all.
 
+(See [reference](https://github.com/NicoHood/HID/blob/master/examples/Keyboard/KeyboardLed/KeyboardLed.ino) code)
+
 # Dependencies
 
 This project relies on  [HID](https://github.com/NicoHood/HID) library by NicoHood, you need to install it in [Arduino IDE](https://www.arduino.cc/en/software) (minimum 1.6.7) before compiling the project.
@@ -71,7 +73,10 @@ This project relies on  [HID](https://github.com/NicoHood/HID) library by NicoHo
 
 # How it works
 
-...
+Keyboard is not just an input device, it's also an output device! You can verify it by yourself: if you connect two keyboards to same PC, upon enabling CAPSLOCK on one keyboard, the CAPSLOCK on the other keyboard will light up!
+
+This sketch enables the Arduino board to behave like a keyboard, receiving input from the "actual" keyboard connected to the PC: upon detecting CAPSLOCK press, it lights up a big led which you can't miss.
+
 
 
 
