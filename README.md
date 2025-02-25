@@ -24,13 +24,12 @@ Just puth the led inside it and connect it to pin 17 of [Arduino Micro](https://
 ```
 #include "HID-Project.h"
 
-const int pinLed = 17;
-const int pinButton = 2;
+const int statusLed = 17; // "alive" status LED
+const int warningLed = 3;
 
 void setup() {
-  pinMode(pinLed, OUTPUT);
-  pinMode(3, OUTPUT);
-  pinMode(pinButton, INPUT_PULLUP);
+  pinMode(statusLed, OUTPUT);
+  pinMode(warningLed, OUTPUT);
 
   // Sends a clean report to the host. This is important on any Arduino type.
   BootKeyboard.begin();
@@ -38,19 +37,11 @@ void setup() {
 
 
 void loop() {
-  digitalWrite(pinLed, HIGH);
-  TXLED1;
+  digitalWrite(statusLed, HIGH); // Inform user that loop is running
   if (BootKeyboard.getLeds() & LED_CAPS_LOCK) {
-    digitalWrite(3, HIGH);
+    digitalWrite(warningLed, HIGH);
   } else {
-    digitalWrite(3, LOW);
-  }
-  // Trigger caps lock manually via button
-  if (!digitalRead(pinButton)) {
-    BootKeyboard.write(KEY_CAPS_LOCK);
-
-    // Simple debounce
-    delay(300);
+    digitalWrite(warningLed, LOW);
   }
 }
 ```
