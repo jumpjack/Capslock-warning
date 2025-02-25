@@ -17,7 +17,7 @@ You can use any container you like for the caps-lock led:
 
 ![image](https://github.com/user-attachments/assets/7ea8f7a5-9cee-4d53-8fc0-2f9bbdf81aab)
 
-Just puth the led inside it and connect it to pin 17 of Arduino Nano
+Just puth the led inside it and connect it to pin 17 of [Arduino Micro](https://docs.arduino.cc/hardware/micro/) (or any Arduino equipped with ATmega32u4)
 
 # The code
 
@@ -63,7 +63,19 @@ This project relies on  [HID](https://github.com/NicoHood/HID) library by NicoHo
 
 # The hardware
 
-...
+ Recommended is [Arduino Pro Micro](https://docs.arduino.cc/hardware/micro/) due to very small form factor. Other devices compatible with HIDlibrary:
+
+## As-Is
+- Leonardo
+- (Pro)Micro
+- Any other 8u2/16u2/at90usb8/162/32u2/32u4 compatible board
+- Zero
+- MKR1000
+
+## With some hacking:
+   - Uno (requires HoodLoader2)
+   - Mega (requires HoodLoader2)
+ 
 
 
 # How it works
