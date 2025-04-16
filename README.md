@@ -58,11 +58,12 @@ This project relies on  [HID](https://github.com/NicoHood/HID) library by NicoHo
 
 ![image](https://github.com/user-attachments/assets/5fdf49f0-f758-4637-9025-b42b07098e8b)
 
- Recommended is [Arduino Pro Micro](https://docs.arduino.cc/hardware/micro/) due to very small form factor. Other devices compatible with HIDlibrary.
+## Tested
+
+[Arduino Pro Micro](https://docs.arduino.cc/hardware/micro/) due to very small form factor. Other devices compatible with HIDlibrary.
 
 ## As-Is
 - Leonardo
-- (Pro)Micro
 - Any other 8u2/16u2/at90usb8/162/32u2/32u4 compatible board
 - Zero
 - MKR1000
@@ -70,7 +71,14 @@ This project relies on  [HID](https://github.com/NicoHood/HID) library by NicoHo
 ## With some hacking:
    - Uno (requires HoodLoader2)
    - Mega (requires HoodLoader2)
- 
+
+## To be tested
+
+   - [AtTiny85](https://www.amazon.it/gp/product/B07MB8Y8SF/) (9,00 euro)
+   - [RP2040-zero](https://www.amazon.it/gp/product/B0D869F8QG/) (Raspberry PI) (9,00) ([How to program it with Arduino IDE](https://www.instructables.com/Programmare-RASPBERRY-PI-PICO-Con-ARDUINO-IDE-Come/))
+   - [RP2040-one](https://www.amazon.it/Waveshare-RP2040-One-Raspberry-Microcontroller-MicroPython/dp/B0BLC1HJND/)  (Raspberry PI) (12,00, no USB cable) ([How to program it with Arduino IDE](https://www.instructables.com/Programmare-RASPBERRY-PI-PICO-Con-ARDUINO-IDE-Come/))
+   - [ESP32-S2-mini](https://www.amazon.it/gp/product/B0BGPD6CV5/ref=ox_sc_act_title_4?smid=A3SCFTIO8CSK1X&psc=1) (8,00 euro)
+   - [ESP32-S3-mini](https://www.amazon.it/Waveshare-ESP32-S3-Development-Board-ESP32-S3FH4R2/dp/B0CJJPJZ2H/ (12,00 euro))
 
 
 # How it works
