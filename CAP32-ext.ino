@@ -1,7 +1,4 @@
 // With configurable external RGB led.
-//  Press button 0 followed by reset to enable the device to capslock monitoring
-//
-//
 
 #ifndef ARDUINO_USB_MODE
 #error This ESP32 SoC has no Native USB interface
@@ -139,6 +136,7 @@ void processSerialCommand(const String& command) {
   delay(100);
   setRGBColor(255,255,255);
   delay(100);
+  updateLEDs();
 }
 
 // Callback per eventi USB
