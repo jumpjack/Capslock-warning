@@ -1,4 +1,7 @@
-// With configurable xternal RGB led.
+// With configurable external RGB led.
+//  Press button 0 followed by reset to enable the device to capslock monitoring
+//
+//
 
 #ifndef ARDUINO_USB_MODE
 #error This ESP32 SoC has no Native USB interface
@@ -9,6 +12,7 @@ void loop() {}
 #else
 #include "USB.h"
 #include "USBHIDKeyboard.h"
+#include <Preferences.h>  // Aggiunto per la memoria persistente
 
 #if !ARDUINO_USB_CDC_ON_BOOT
 USBCDC USBSerial;
@@ -16,6 +20,9 @@ USBCDC USBSerial;
 
 USBHID HID;
 USBHIDKeyboard Keyboard;
+
+bool capsLockState = false;  // Variabile per tracciare lo stato del Caps Lock
+
 
 #define RGB_R 12
 #define RGB_G 13
@@ -48,6 +55,8 @@ const RainbowColor rainbowColors[] = {
 };
 const int rainbowColorsCount = 7;
 
+Preferences preferences;  // Oggetto per gestire le preferenze
+
 // Imposta il colore RGB
 void setRGBColor(uint8_t r, uint8_t g, uint8_t b) {
   analogWrite(RGB_R, r);
@@ -68,6 +77,27 @@ bool findRainbowColor(const String& name, uint8_t &r, uint8_t &g, uint8_t &b) {
   return false;
 }
 
+// Salva i colori nella memoria persistente
+void saveColorsToPreferences() {
+  preferences.begin("rgb_settings", false); // false per modalità lettura/scrittura
+  preferences.putUChar("capsR", capsR);
+  preferences.putUChar("capsG", capsG);
+  preferences.putUChar("capsB", capsB);
+  preferences.end();
+  updateLEDs();
+  Serial.println("Colori salvati nella memoria persistente");
+}
+
+// Carica i colori dalla memoria persistente
+void loadColorsFromPreferences() {
+  preferences.begin("rgb_settings", true); // true per modalità sola lettura
+  capsR = preferences.getUChar("capsR", 255); // Valore di default 255 (rosso) se non trovato
+  capsG = preferences.getUChar("capsG", 0);   // Valore di default 0
+  capsB = preferences.getUChar("capsB", 0);   // Valore di default 0
+  preferences.end();
+  Serial.printf("Colori caricati dalla memoria: R=%d, G=%d, B=%d\n", capsR, capsG, capsB);
+}
+
 // Processa i comandi dalla seriale
 void processSerialCommand(const String& command) {
   // Comando RGB: r,g,b
@@ -80,6 +110,7 @@ void processSerialCommand(const String& command) {
       capsG = command.substring(firstComma + 1, secondComma).toInt();
       capsB = command.substring(secondComma + 1).toInt();
       Serial.printf("Nuovo colore: R=%d, G=%d, B=%d\n", capsR, capsG, capsB);
+      saveColorsToPreferences(); // Salva i nuovi colori
       return;
     }
   }
@@ -91,6 +122,7 @@ void processSerialCommand(const String& command) {
     capsG = g;
     capsB = b;
     Serial.printf("Colore %s impostato: R=%d, G=%d, B=%d\n", command.c_str(), capsR, capsG, capsB);
+    saveColorsToPreferences(); // Salva i nuovi colori
     return;
   }
   
@@ -107,24 +139,29 @@ void processSerialCommand(const String& command) {
   delay(100);
   setRGBColor(255,255,255);
   delay(100);
-  
 }
 
 // Callback per eventi USB
 static void usbEventCallback(void *arg, esp_event_base_t event_base, int32_t event_id, void *event_data) {
-
+Serial.println("Evento");
   if (event_base == ARDUINO_USB_HID_KEYBOARD_EVENTS) {
+Serial.println("   event_base = Evento ARDUINO_USB_HID_KEYBOARD_EVENTS");
     arduino_usb_hid_keyboard_event_data_t *data = (arduino_usb_hid_keyboard_event_data_t *)event_data;
     if (event_id == ARDUINO_USB_HID_KEYBOARD_LED_EVENT) {
-      digitalWrite(LED_BUILTIN, data->capslock);
-      if (data->capslock) {    
-        setRGBColor(255-capsR, 255-capsG, 255-capsB); // on
-        ledOn = true;
-      } else {
-        setRGBColor(255, 255, 255); // off
-        ledOn = false;
-      }
+Serial.println("         event_id == ARDUINO_USB_HID_KEYBOARD_LED_EVENT");
+     capsLockState = data->capslock;  // Aggiorna lo stato del Caps Lock
+      updateLEDs();  // Aggiorna entrambi i LED
     }
+  }
+}
+
+void updateLEDs() {
+  if (capsLockState) {
+    digitalWrite(LED_BUILTIN, HIGH);
+    setRGBColor(255-capsR, 255-capsG, 255-capsB);  // Accendi il LED esterno con il colore selezionato
+  } else {
+    digitalWrite(LED_BUILTIN, LOW);
+    setRGBColor(255,255,255);  // Spegni il LED esterno
   }
 }
 
@@ -148,9 +185,13 @@ void setup() {
   ledcAttach(RGB_G, 5000, 8);
   ledcAttach(RGB_B, 5000, 8);
 
+  // Carica i colori salvati
+  loadColorsFromPreferences();
+
   Serial.println("Sketch avviato. Invia:");
   Serial.println("- r,g,b (es. 255,100,0)");
   Serial.println("- nome colore (es. blue)");
+  Serial.printf("Colore corrente: R=%d, G=%d, B=%d\n", capsR, capsG, capsB);
 }
 
 void loop() {
@@ -167,6 +208,5 @@ void loop() {
     setRGBColor(255-capsR, 255-capsG, 255-capsB);
   }
 }
-
 
 #endif /* ARDUINO_USB_MODE */
