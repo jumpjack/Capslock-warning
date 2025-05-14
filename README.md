@@ -60,7 +60,9 @@ This project relies on  [HID](https://github.com/NicoHood/HID) library by NicoHo
 
 ## Tested
 
-[Arduino Pro Micro](https://docs.arduino.cc/hardware/micro/) due to very small form factor. Other devices compatible with HIDlibrary.
+- [Arduino Pro Micro](https://docs.arduino.cc/hardware/micro/) due to very small form factor. Other devices compatible with HIDlibrary.
+- [RP2040-zero](https://www.amazon.it/gp/product/B0D869F8QG/) (Raspberry PI) (9,00) ([How to program it with Arduino IDE](https://www.instructables.com/Programmare-RASPBERRY-PI-PICO-Con-ARDUINO-IDE-Come/))
+- [ESP32-S2-mini](https://www.amazon.it/gp/product/B0BGPD6CV5/ref=ox_sc_act_title_4?smid=A3SCFTIO8CSK1X&psc=1) (8,00 euro)
 
 ## As-Is
 - Leonardo
@@ -75,9 +77,7 @@ This project relies on  [HID](https://github.com/NicoHood/HID) library by NicoHo
 ## To be tested
 
    - [AtTiny85](https://www.amazon.it/gp/product/B07MB8Y8SF/) (9,00 euro)
-   - [RP2040-zero](https://www.amazon.it/gp/product/B0D869F8QG/) (Raspberry PI) (9,00) ([How to program it with Arduino IDE](https://www.instructables.com/Programmare-RASPBERRY-PI-PICO-Con-ARDUINO-IDE-Come/))
    - [RP2040-one](https://www.amazon.it/Waveshare-RP2040-One-Raspberry-Microcontroller-MicroPython/dp/B0BLC1HJND/)  (Raspberry PI) (12,00, no USB cable) ([How to program it with Arduino IDE](https://www.instructables.com/Programmare-RASPBERRY-PI-PICO-Con-ARDUINO-IDE-Come/))
-   - [ESP32-S2-mini](https://www.amazon.it/gp/product/B0BGPD6CV5/ref=ox_sc_act_title_4?smid=A3SCFTIO8CSK1X&psc=1) (8,00 euro)
    - [ESP32-S3-mini](https://www.amazon.it/Waveshare-ESP32-S3-Development-Board-ESP32-S3FH4R2/dp/B0CJJPJZ2H/) (12,00 euro)
 
 
@@ -87,6 +87,8 @@ Keyboard is not just an input device, it's also an output device! You can verify
 
 This sketch enables the Arduino board to behave like a keyboard, receiving input from the "actual" keyboard connected to the PC: upon detecting CAPSLOCK press, it lights up a big led which you can't miss.
 
+# Serial communication
 
+Some of the  sketches support setting up led color using command R,G,B from serial (ex: 0,0,255 will set led to blue). Usa free+portable [Tera Term for Windows](https://sourceforge.net/projects/tera-term/).
 
 
