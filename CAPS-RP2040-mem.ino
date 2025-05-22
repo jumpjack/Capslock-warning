@@ -1,4 +1,6 @@
-// Added support for persistant storage of color
+// Version for WaveShare RP2040 zero (Raspberry PI)
+// External RGB LED support.
+// Added support for persistant storage of color.
 
 #include <Keyboard.h>
 #include <Adafruit_NeoPixel.h>
