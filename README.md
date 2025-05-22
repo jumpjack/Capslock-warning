@@ -54,8 +54,8 @@ That's all.
 
 This project relies on various libraries, depending on the board:
 - Arduino Pro Micro: [HID](https://github.com/NicoHood/HID) library by NicoHood, you need to install it in [Arduino IDE](https://www.arduino.cc/en/software) (minimum 1.6.7) before compiling the project.
-- ESP32:
-- Waveshare RP2040 zero:
+- ESP32: 
+- Waveshare RP2040 zero: keyboard.h (pre-included in IDE?)
 - All: Adafruit Neopixel (for RGB LED control).
 
 # The hardware
