@@ -1,3 +1,6 @@
+// Version for WaveShare RP2040 zero (Raspberry PI)
+// External RGB LED support.
+
 #include <Keyboard.h>
 #include <Adafruit_NeoPixel.h>
 
