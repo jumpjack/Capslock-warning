@@ -64,15 +64,9 @@ This project relies on various libraries, depending on the board:
 
 ## Tested
 
-- [Arduino Pro Micro](https://docs.arduino.cc/hardware/micro/) due to very small form factor. Other devices compatible with HIDlibrary.
+- [Arduino Pro Micro](https://docs.arduino.cc/hardware/micro/) due to very small form factor but other models are compatible with HIDlibrary (Leonardo, Zero, any mounting 32u4).
 - [RP2040-zero](https://www.amazon.it/gp/product/B0D869F8QG/) (Raspberry PI) (9,00) ([How to program it with Arduino IDE](https://www.instructables.com/Programmare-RASPBERRY-PI-PICO-Con-ARDUINO-IDE-Come/))
 - [ESP32-S2-mini](https://www.amazon.it/gp/product/B0BGPD6CV5/ref=ox_sc_act_title_4?smid=A3SCFTIO8CSK1X&psc=1) (8,00 euro)
-
-## As-Is
-- Leonardo
-- Any other 8u2/16u2/at90usb8/162/32u2/32u4 compatible board
-- Zero
-- MKR1000
 
 ## With some hacking:
    - Uno (requires HoodLoader2)
