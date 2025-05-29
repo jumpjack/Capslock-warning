@@ -2,7 +2,7 @@
 // External RGB LED support.
 // Added support for persistant storage of color.
 // Separated LEDs version: capslock = red, scroll-lock = green, numlock = blue; keys combination lead to colors combination
-// Imple,ented calibrarition level for RGB leds with unbalanced channels.
+// Implemented calibration level for RGB leds with unbalanced channels.
 
 
 #include <Keyboard.h>
